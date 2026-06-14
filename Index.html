@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gold Rush</title>
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+background:#f4e4bc;
+padding:20px;
+}
+
+button{
+padding:15px 30px;
+font-size:20px;
+margin:10px;
+border:none;
+border-radius:10px;
+background:gold;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+max-width:400px;
+margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>💰 Gold Rush</h1>
+
+<h2 id="gold">0 Gold</h2>
+
+<button onclick="mineGold()">
+⛏️ Dig For Gold
+</button>
+
+<br>
+
+<button onclick="buyUpgrade()">
+Upgrade Pickaxe (50 Gold)
+</button>
+
+</div>
+
+<script>
+
+let gold = localStorage.getItem("gold")
+? parseInt(localStorage.getItem("gold"))
+: 0
+
+let power = localStorage.getItem("power")
+? parseInt(localStorage.getItem("power"))
+: 1
+
+function update(){
+document.getElementById("gold").innerHTML =
+gold + " Gold"
+
+localStorage.setItem("gold",gold)
+localStorage.setItem("power",power)
+}
+
+function mineGold(){
+gold += power
+update()
+}
+
+function buyUpgrade(){
+
+if(gold >= 50){
+
+gold -= 50
+power += 1
+
+update()
+
+alert("Pickaxe Upgraded!")
+}
+}
+
+update()
+
+</script>
+
+</body>
+</html>
